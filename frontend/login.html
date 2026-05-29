@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Habitation - Login</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="centered-body">
+    <div class="auth-card">
+        <h1 class="logo-title">Habitation</h1>
+        <p class="subtitle">Complete missions. Earn XP. Level up your life.</p>
+        
+        <!-- Login Form -->
+        <form id="login-form" autocomplete="off">
+            <h2 class="form-title">Welcome Back</h2>
+            <div class="input-group">
+                <input type="text" id="login-username" placeholder="Username" required>
+            </div>
+            <div class="input-group">
+                <input type="password" id="login-password" placeholder="Password" required>
+            </div>
+            <button type="submit" class="btn primary-btn full-width">Login</button>
+            <p class="switch-text">Don't have an account? <span class="link" onclick="toggleAuth('signup')">Sign up</span></p>
+            <div id="login-error" class="error-msg"></div>
+        </form>
+
+        <!-- Signup Form -->
+        <form id="signup-form" autocomplete="off" style="display: none;">
+            <h2 class="form-title">Create Account</h2>
+            <div class="input-group">
+                <input type="text" id="signup-username" placeholder="Choose Username" required>
+            </div>
+            <div class="input-group">
+                <input type="password" id="signup-password" placeholder="Create Password" required>
+            </div>
+            <button type="submit" class="btn primary-btn full-width">Sign Up</button>
+            <p class="switch-text">Already have an account? <span class="link" onclick="toggleAuth('login')">Login</span></p>
+            <div id="signup-error" class="error-msg"></div>
+        </form>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

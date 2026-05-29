@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Habitation - Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="dashboard-body">
+    <nav class="navbar">
+        <div class="nav-brand">Habitation</div>
+        <div class="nav-user" style="display: flex; align-items: center;">
+            <span id="display-username" class="username-badge">Player</span>
+            <div id="profile-avatar"></div>
+            <button class="btn secondary-btn small" onclick="logout()">Logout</button>
+        </div>
+    </nav>
+
+    <main class="main-layout">
+        <!-- Left: Stats Panel -->
+        <aside class="stats-panel">
+            <div class="card stat-card">
+                <div class="stat-icon">✨</div>
+                <h3 class="stat-label">Total XP</h3>
+                <div class="stat-value" id="xp-display">0</div>
+                <p class="stat-subtext">Keep completing missions to level up!</p>
+            </div>
+
+            <!-- New Streak Card -->
+            <div class="card stat-card">
+                <div class="stat-icon">🔥</div>
+                <h3 class="stat-label">Daily Streak</h3>
+                <div class="stat-value" id="streak-display">0</div>
+                <p class="stat-subtext">Complete tasks daily to keep it alive!</p>
+            </div>
+
+            <!-- New Progress Card -->
+            <div class="card stat-card progress-card">
+                <h3 class="stat-label">Level <span id="level-display">0</span></h3>
+                <div class="progress-bar-bg">
+                    <div class="progress-bar-fill" id="progress-fill"></div>
+                </div>
+                <p class="stat-subtext"><span id="progress-text">0</span> / 100 XP to next level</p>
+            </div>
+
+            <!-- New Activity Feed Card -->
+            <div class="card stat-card activity-feed-card">
+                <h3 class="stat-label">Recent Activity</h3>
+                <ul id="activity-list" class="activity-list">
+                    <!-- Activities injected here -->
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Right: Missions Panel -->
+        <section class="missions-panel">
+            <!-- Add Mission Section -->
+            <div class="card add-mission-card">
+                <h2>New Mission</h2>
+                <form id="add-task-form" onsubmit="handleAddTask(event)">
+                    <div class="add-mission-inputs">
+                        <input type="text" id="new-task-name" placeholder="E.g., Read 10 pages..." required class="input-box flex-1">
+                        <input type="number" id="new-task-xp" placeholder="XP" min="1" max="500" value="20" required class="input-box xp-input">
+                        <button type="submit" class="btn primary-btn">Add Task</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Missions List Section -->
+            <div class="card mission-list-card">
+                <h2>Active Missions</h2>
+                <div id="missions-container" class="missions-container">
+                    <!-- Tasks will be dynamically injected here -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Profile Panel -->
+    <div id="profile-panel">
+      <div class="profile-content">
+        <div id="profile-header">
+          <span>Your Profile</span>
+          <button id="close-profile">✖</button>
+        </div>
+        <div id="profile-info">
+          <h3 id="profile-name"></h3>
+          <p>Level: <span id="profile-level"></span></p>
+          <p>XP: <span id="profile-xp"></span></p>
+          <p>Streak: <span id="profile-streak"></span></p>
+        </div>
+        <canvas id="xpChart" height="150"></canvas>
+        <div id="avatar-selection" style="margin-top: 15px;">
+          <img src="https://api.dicebear.com/7.x/bottts/svg?seed=cat" class="avatar-option" data-avatar="cat">
+          <img src="https://api.dicebear.com/7.x/bottts/svg?seed=dog" class="avatar-option" data-avatar="dog">
+          <img src="https://api.dicebear.com/7.x/bottts/svg?seed=alien" class="avatar-option" data-avatar="alien">
+          <img src="https://api.dicebear.com/7.x/bottts/svg?seed=ninja" class="avatar-option" data-avatar="ninja">
+        </div>
+      </div>
+    </div>
+
+    <!-- AI Robo Dog -->
+    <div id="robo-dog" style="display: none;">
+      <svg id="dog-svg" width="80" height="80" viewBox="0 0 100 100">
+        <!-- head -->
+        <rect id="dog-head" x="20" y="30" width="60" height="40" rx="12" fill="#6c63ff"/>
+        <!-- ears -->
+        <polygon points="20,30 10,10 30,20" fill="#6c63ff"/>
+        <polygon points="80,30 90,10 70,20" fill="#6c63ff"/>
+        <!-- eyes -->
+        <circle class="eye" cx="40" cy="50" r="5" fill="#00ffcc"/>
+        <circle class="eye" cx="60" cy="50" r="5" fill="#00ffcc"/>
+        <!-- mouth -->
+        <rect id="dog-mouth" x="40" y="60" width="20" height="4" rx="2" fill="#00ffcc"/>
+      </svg>
+    </div>
+    <div id="dog-bubble"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
